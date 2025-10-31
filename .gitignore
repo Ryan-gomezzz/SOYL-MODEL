@@ -1,0 +1,37 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtualenv
+env/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Models, logs, data
+models/
+data/
+*.log
+logs/
+
+# OS
+.DS_Store
+
+# Python env files
+*.pyenv
+.env
+
+# PyTorch large files
+*.pt
+*.pth
+
+# IDE
+.vscode/
+.idea/
+
+# Local config
+secrets.yaml
+
