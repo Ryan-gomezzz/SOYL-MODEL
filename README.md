@@ -126,12 +126,6 @@ POST /getEmotionState
 }
 ```
 
-## 👥 Team Roles (Phase 1)
-| Member | Role | Key Deliverables |
-|--------|------|-----------------|
-| Ryan (Lead / Integration) | Build FastAPI /getEmotionState, handle integration & fusion logic | Unified API + demo |
-| Member 2 (Vision Engineer) | Build real-time face emotion detection (MediaPipe/OpenCV) | face_emotion.py + demo |
-| Member 3 (Audio & NLP Engineer) | Build voice emotion & text sentiment modules | voice_emotion.py, text_sentiment.py |
 
 ## 🎯 Milestone Goals
 | Week | Focus | Output |
