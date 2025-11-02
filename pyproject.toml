@@ -1,4 +1,13 @@
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+[tool.poetry]
+name = "soyl-model"
+version = "0.0.0"
+description = "SOYL multimodal emotion backbone"
+authors = ["Ryan <you@example.com>"]
 
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

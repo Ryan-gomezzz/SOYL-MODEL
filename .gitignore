@@ -1,37 +1,40 @@
-# Byte-compiled / cache
+# Python
 __pycache__/
 *.py[cod]
-*.so
-
-# Virtualenv
+*.pyo
+*.pyd
+.Python
 env/
 .venv/
 venv/
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# Virtual env
+.venv/
+
+# Pytest cache
+.pytest_cache/
 
 # Jupyter
-.ipynb_checkpoints/
+.ipynb_checkpoints
 
-# Models, logs, data
-models/
-data/
-*.log
-logs/
+# VSCode
+.vscode/
 
-# OS
+# DVC
+.dvc/
+.cache/
+
+# Mac
 .DS_Store
 
-# Python env files
-*.pyenv
-.env
+# Logs
+logs/
+*.log
 
-# PyTorch large files
-*.pt
-*.pth
-
-# IDE
-.vscode/
-.idea/
-
-# Local config
-secrets.yaml
-
+# Model artifacts
+models/
+runs/

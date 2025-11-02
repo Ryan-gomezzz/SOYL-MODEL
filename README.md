@@ -1,3 +1,19 @@
+# SOYL-MODEL
+
+This repo contains the multimodal emotion backbone (Phase 1). This branch adds scaffold files, a minimal FastAPI, Dockerfile, and CI.
+
+Quickstart:
+1. Create virtualenv and install deps:
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+2. Run the API:
+   uvicorn app.main:app --reload --port 8000
+3. Healthcheck:
+   curl http://localhost:8000/health
+
+---
+
 # 🧠 SOYL-MODEL  
 **Cognitive Signal Processing for Agentic AI**  
 *Phase 1 — Core Emotion Modules (MVP Build)*  
