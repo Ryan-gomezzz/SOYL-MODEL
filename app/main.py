@@ -1,37 +1,50 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List, Optional
-import uvicorn
-import sys
-import os
+from typing import List, Dict, Any
 
-# Add parent directory to path to import modules
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import modules.fusion.fusion as fusion
+app = FastAPI(title="SOYL-MODEL Fusion API")
 
-app = FastAPI(title="Emotion Sales MVP - Fusion API")
 
-class ModuleOutput(BaseModel):
+class ModuleItem(BaseModel):
     valence: float
     arousal: float
     confidence: float
     source: str
 
-class FusionRequest(BaseModel):
-    modules: List[ModuleOutput]
 
-@app.post("/getEmotionState")
-async def get_emotion_state(req: FusionRequest):
-    try:
-        fused = fusion.compute_emotion_state([m.dict() for m in req.modules])
-        return fused
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+class GetEmotionRequest(BaseModel):
+    modules: List[ModuleItem]
 
-@app.get("/")
-async def root():
-    return {"status": "ok", "message": "Emotion Sales MVP Fusion API"}
 
-if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+class EmotionState(BaseModel):
+    valence: float
+    arousal: float
+    confidence: float
+    dominant_signal: str
 
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
+@app.post("/getEmotionState", response_model=EmotionState)
+def get_emotion_state(req: GetEmotionRequest):
+    if not req.modules:
+        return {
+            "valence": 0.5,
+            "arousal": 0.2,
+            "confidence": 0.0,
+            "dominant_signal": "none",
+        }
+    # Simple placeholder fusion: confidence-weighted average
+    total_w = sum(m.confidence for m in req.modules) or 1.0
+    val = sum(m.valence * m.confidence for m in req.modules) / total_w
+    ar = sum(m.arousal * m.confidence for m in req.modules) / total_w
+    best = max(req.modules, key=lambda x: x.confidence)
+    return {
+        "valence": round(val, 3),
+        "arousal": round(ar, 3),
+        "confidence": round(max(m.confidence for m in req.modules), 3),
+        "dominant_signal": best.source,
+    }
