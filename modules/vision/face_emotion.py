@@ -4,7 +4,7 @@ This file contains a simple webcam demo using MediaPipe for face detection
 and returns a dummy valence/arousal/confidence output.
 Replace dummy logic with your trained model inference when ready.
 """
-import cv2
+'''import cv2
 import mediapipe as mp
 import numpy as np
 import time
@@ -61,5 +61,5 @@ def webcam_demo():
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    webcam_demo()
+    webcam_demo()'''
 
