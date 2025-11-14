@@ -1,2 +1,0 @@
-# Fusion module package
-
